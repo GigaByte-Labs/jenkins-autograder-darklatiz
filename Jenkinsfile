@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
-                fileOperations([folderCreateOperation("/home/pi/${FOLDER_DEST}")])
+                sh "mkdir -p /home/pi/${FOLDER_DEST}"
                 fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "/home/pi/${FOLDER_DEST}", targetNameExpression: '')])
             }
         }
