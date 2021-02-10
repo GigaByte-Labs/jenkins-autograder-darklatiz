@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment{
-        FOLDER_DEST = "grades-${JOB_NAME}-${BUILD_NUMBER}"
-        FILE_NAME_ZIP = "grades-${JOB_NAME}-${BUILD_NUMBER}.zip"
+        FOLDER_DEST = "grades-darklatiz"
+        FILE_NAME_ZIP = "grades-darklatiz-${BUILD_NUMBER}.zip"
     }
 
     stages {
