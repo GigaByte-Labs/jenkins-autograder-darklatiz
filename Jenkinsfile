@@ -12,6 +12,7 @@ pipeline {
     }
 
     stages {
+        
         /* stage('GitHub') {
             steps{
                 // Get some code from a GitHub repository
