@@ -46,7 +46,7 @@ pipeline {
         }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/*', renameFiles: false, sourceCaptureExpression: '', targetLocation: "/home/pi/${FOLDER_DEST}", targetNameExpression: '')])
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "/home/pi/${FOLDER_DEST}", targetNameExpression: '')])
             }
         }
         stage('Email -  Sending Grades to Student'){
