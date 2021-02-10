@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        FOLDER_DEST = "grades-darklatiz"
+        FOLDER_DEST = "grades-${JOB_NAME}-${BUILD_NUMBER}"
         FILE_NAME_ZIP = "grades-darklatiz-${BUILD_NUMBER}.zip"
     }
 
@@ -47,8 +47,8 @@ pipeline {
         }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
-                sh "mkdir -p /home/pi/${FOLDER_DEST}"
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "/home/pi/${FOLDER_DEST}", targetNameExpression: '')])
+                sh "mkdir -p ${FOLDER_DEST}"
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "${FOLDER_DEST}", targetNameExpression: '')])
             }
         }
         stage('Email -  Sending Grades to Student'){
