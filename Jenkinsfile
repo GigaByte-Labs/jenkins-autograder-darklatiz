@@ -6,7 +6,8 @@ pipeline {
     }
 
     environment{
-        FOLDER_DEST = "grades${JOB_NAME}${BUILD_NUMBER}"
+        FOLDER_DEST = "grades-${JOB_NAME}-${BUILD_NUMBER}"
+        FILE_NAME_ZIP = "grades-${JOB_NAME}-${BUILD_NUMBER}.zip"
     }
 
     stages {
@@ -46,7 +47,7 @@ pipeline {
         }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
-                fileOperations([folderCreateOperation('')])
+                fileOperations([folderCreateOperation("${FOLDER_DEST}")])
                 fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "/home/pi/${FOLDER_DEST}", targetNameExpression: '')])
             }
         }
