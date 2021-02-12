@@ -1,14 +1,15 @@
 pipeline {
     agent any
-
+    
     options {
         timestamps()
     }
-
     environment{
-        FOLDER_DEST = "grades-${JOB_NAME}-${BUILD_NUMBER}"
+        /* FOLDER_DEST = "grades-${JOB_NAME}-${BUILD_NUMBER}" */
+        FOLDER_DEST = "grades/${BUILD_NUMBER}"
+        FILE_NAME_ZIP = "grades-darklatiz-${BUILD_NUMBER}.zip"
     }
-
+    
     stages {
         /* stage('GitHub') {
             steps{
@@ -44,13 +45,21 @@ pipeline {
                 }
             }
         }
+        stage('Deleting last build files'){
+            steps{
+                sh "rm -rf grades/*"
+            }
+        }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/*.*', renameFiles: false, sourceCaptureExpression: '', targetLocation: '/home/pi/{FOLDER_DEST}', targetNameExpression: '')])
+                sh "mkdir -p ${FOLDER_DEST}"
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'target/site/**', renameFiles: false, sourceCaptureExpression: '', targetLocation: "${FOLDER_DEST}", targetNameExpression: '')])
             }
         }
         stage('Email -  Sending Grades to Student'){
-            echo "To be implemented"
+            steps{
+                echo "To be implemented"
+            }
         }
     }
 }
