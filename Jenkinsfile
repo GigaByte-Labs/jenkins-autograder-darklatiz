@@ -45,6 +45,11 @@ pipeline {
                 }
             }
         }
+        stage('Deleting last build files'){
+            steps{
+                sh "rm -rf grades/*"
+            }
+        }
         stage('Pre email Step - Copying Grades to local folder'){
             steps{
                 sh "mkdir -p ${FOLDER_DEST}"
