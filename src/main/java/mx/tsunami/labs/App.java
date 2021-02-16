@@ -9,6 +9,7 @@ public class App {
   }
 
   public static String obtenerSaludo(String nombre) {
+    if(nombre == null) return null;
     return "Hola " + nombre + "!";
   }
 }
