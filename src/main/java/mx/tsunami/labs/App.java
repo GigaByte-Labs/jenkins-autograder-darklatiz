@@ -9,6 +9,6 @@ public class App {
   }
 
   public static String obtenerSaludo(String nombre) {
-    return "";
+    return "Hola " + nombre + "!";
   }
 }
